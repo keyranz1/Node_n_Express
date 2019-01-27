@@ -1,5 +1,5 @@
 import { runInNewContext } from "vm";
-import { addNewContact, getAllContacts} from "../controllers/controllersCrm";
+import { addNewContact, getAllContacts, getContactWithId} from "../controllers/controllersCrm";
 
 const routes = (app) => {
     app.route('/contact')
@@ -17,12 +17,18 @@ const routes = (app) => {
     // });
 
     app.route('/contact/:contactId')
+    //get specific contact
+    .get(getContactWithId)
+
+    //put request
     .put((req,res,next)=>{
         console.log(req);
         next();
     },(req,res,next)=>{
         res.send('Put request sucessful!!');
     })
+
+    //delete request
     .delete((req,res)=>{
         res.send('DELETE request send sucessfully');
     });
