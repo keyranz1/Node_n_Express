@@ -1,5 +1,5 @@
 import { runInNewContext } from "vm";
-import { addNewContact, getAllContacts, getContactWithId} from "../controllers/controllersCrm";
+import { addNewContact, getAllContacts, getContactWithId, updateContact} from "../controllers/controllersCrm";
 
 const routes = (app) => {
     app.route('/contact')
@@ -21,12 +21,7 @@ const routes = (app) => {
     .get(getContactWithId)
 
     //put request
-    .put((req,res,next)=>{
-        console.log(req);
-        next();
-    },(req,res,next)=>{
-        res.send('Put request sucessful!!');
-    })
+    .put(updateContact)
 
     //delete request
     .delete((req,res)=>{
