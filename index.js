@@ -10,7 +10,8 @@ const PORT = 3000;
 //mongoose connection
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/CRMdb',{
-    useMongoClient: true
+    // useMongoClient: true, ---> not required in new version
+    useNewUrlParser: true
 });
 
 //bodyPraser setup
