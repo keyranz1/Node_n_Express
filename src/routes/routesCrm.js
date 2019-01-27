@@ -1,5 +1,5 @@
 import { runInNewContext } from "vm";
-import { addNewContact } from "../controllers/controllersCrm";
+import { addNewContact, getAllContacts} from "../controllers/controllersCrm";
 
 const routes = (app) => {
     app.route('/contact')
@@ -8,9 +8,8 @@ const routes = (app) => {
         console.log(`Request from ${req.originalUrl}`);
         console.log(`Request type: ${req.method}`);
         next();
-    },(req, res,next)=>{
-        res.send('Get request send Successful!!!');
-    })
+    }, getAllContacts)
+    // (req, res,next)=>{res.send('Get request send Successful!!!');}
     //Post endpoint
     .post(addNewContact);
     // .post((req,res)=>{
