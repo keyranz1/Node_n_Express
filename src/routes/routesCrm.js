@@ -1,6 +1,13 @@
+import { runInNewContext } from "vm";
+
 const routes = (app) => {
     app.route('/contact')
-    .get((req,res)=>{
+    .get((req,res,next)=>{
+        //Middleware uses 
+        console.log(`Request from ${req.originalUrl}`);
+        console.log(`Request type: ${req.method}`);
+        next();
+    },(req, res,next)=>{
         res.send('Get request send Successful!!!');
     })
     .post((req,res)=>{
@@ -8,8 +15,11 @@ const routes = (app) => {
     });
 
     app.route('/contact/:contactId')
-    .put((req,res)=>{
-        res.send('PUt request sucessful!!');
+    .put((req,res,next)=>{
+        console.log(req);
+        next();
+    },(req,res,next)=>{
+        res.send('Put request sucessful!!');
     })
     .delete((req,res)=>{
         res.send('DELETE request send sucessfully');
